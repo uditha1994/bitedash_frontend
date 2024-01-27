@@ -8,7 +8,7 @@ div {
 input {
   border-radius: 10rem 0 0 10rem;
   border: none;
-  height: 4rem;
+  height: 3rem;
   width: 20rem;
   background-color: #f1f1f1;
   padding: 1.2rem;
@@ -19,7 +19,7 @@ input {
 
 div button {
   color: gray;
-  height: 4rem;
+  height: 3rem;
   width: 6rem;
   font-size: 1rem;
   border-radius: 0 10rem 10rem 0;
