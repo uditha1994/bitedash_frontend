@@ -27,4 +27,9 @@ export class FoodService {
     this.getAll():
     this.getAll().filter(Food => Food.tags?.includes(tag))
   }
+
+  getFoodById(foodId:string):Food{
+    return this.getAll().find(Food => Food.id == foodId) ?? new Food();
+  }
+
 }
