@@ -3,15 +3,11 @@
         <a routerLink="/" class="logo">BiteDash</a>
         <nav>
             <ul>
-                <!-- <li *ngIf="!isAuth"> -->
-                <li>
-
+                <li *ngIf="!isAuth">
                     <a routerLink="/login">Login</a>
                 </li>
-                <!-- <li *ngIf="isAuth" class="menu-container"> -->
-                <li class="menu-container">
-
-                    <a routerLink="/dashboard">John</a>
+                <li *ngIf="!isAuth" class="menu-container">
+                    <a routerLink="/dashboard">{{user.name}}</a>
                     <div class="menu">
                         <a routerLink="/profile">Profile</a>
                         <a routerLink="/orders">Orders</a>
@@ -19,7 +15,7 @@
                     </div>
                 </li>
                 <li>
-                    <a routerLink="/cart-page">Cart <span>0</span></a>
+                    <a routerLink="/cart-page">Cart <span>{{cartQuantity}}</span></a>
                 </li>
             </ul>
         </nav>

@@ -12,18 +12,18 @@ export class HeaderComponent{
   cartQuantity = 0;
   user!:User;
 
-  // constructor(cartservice:CartService, private userService:UserService){
-  //   cartservice.getCartObservable().subscribe((newCart)=>{
-  //     this.cartQuantity = newCart.totalCount;
-  //   })
+  constructor(cartservice:CartService, private userService:UserService){
+    cartservice.getCartObservable().subscribe((newCart)=>{
+      this.cartQuantity = newCart.totalCount;
+    })
 
-  //   userService.userObservable.subscribe((newUser) => {
-  //     this.user = newUser;
-  //   })
-  // }
+    userService.userObservable.subscribe((newUser) => {
+      this.user = newUser;
+    })
+  }
   
   logout(){
-    // this.userService.logout();
+    this.userService.logout();
   }
 
   get isAuth(){
