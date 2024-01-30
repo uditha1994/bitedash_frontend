@@ -1,22 +1,25 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { User } from '../shared/models/User';
 import { IUserLogin } from '../shared/interfaces/IUserLogin';
 import { HttpClient } from '@angular/common/http';
-import { USER_LOGIN_URL } from '../shared/constants/urls';
+import { USER_LOGIN_URL, USER_REGISTER_URL } from '../shared/constants/urls';
 import { ToastrService } from 'ngx-toastr';
+import { IUserRegister } from '../shared/interfaces/IUserRegister';
 
 const USER_KEY = 'User';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class UserService implements OnInit{
   private userSubject = new BehaviorSubject<User>(this.getUserFromLocalStorage());
   public userObservable:Observable<User>;
   
   constructor(private http:HttpClient, private toastrService:ToastrService) {
     this.userObservable = this.userSubject.asObservable();
+  }
+  ngOnInit(): void {
   }
 
   login(userLogin:IUserLogin):Observable<User>{
@@ -35,6 +38,24 @@ export class UserService {
         }
       })
     );
+  }
+
+  register(userRegister:IUserRegister): Observable<User>{
+    return this.http.post<User>(USER_REGISTER_URL, userRegister).pipe(
+      tap({
+        next: (user) => {
+          this.setUserToLocalStorate(user);
+          this.userSubject.next(user);
+          this.toastrService.success(
+            `Welcome to the BiteDash ${user.name}`,
+            'Register Successful!!'
+          )
+        },
+        error:(errorResponce) => {
+          this.toastrService.error(errorResponce.error,'Register Faild')
+        }
+      })
+    )
   }
 
   logout(){

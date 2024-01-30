@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Food } from '../shared/models/Food';
 import { sample_foodData, sample_tags } from '../../data';
 import { Tag } from '../shared/models/Tag';
@@ -9,9 +9,11 @@ import { FOODS_BY_ID_URL, FOODS_BY_TAG_URL, FOODS_SEARCHBY_URL, FOODS_TAGS_URL, 
 @Injectable({
   providedIn: 'root'
 })
-export class FoodService {
+export class FoodService implements OnInit{
 
   constructor(private http:HttpClient) { }
+  ngOnInit(): void {
+  }
 
   getAll() : Observable<Food[]> {
     return this.http.get<Food[]>(FOODS_URL);
