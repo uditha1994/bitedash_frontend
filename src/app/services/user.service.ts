@@ -12,14 +12,16 @@ const USER_KEY = 'User';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService implements OnInit{
+export class UserService{
   private userSubject = new BehaviorSubject<User>(this.getUserFromLocalStorage());
   public userObservable:Observable<User>;
   
   constructor(private http:HttpClient, private toastrService:ToastrService) {
     this.userObservable = this.userSubject.asObservable();
   }
-  ngOnInit(): void {
+
+  public get currentUser():User{
+    return this.userSubject.value;
   }
 
   login(userLogin:IUserLogin):Observable<User>{
