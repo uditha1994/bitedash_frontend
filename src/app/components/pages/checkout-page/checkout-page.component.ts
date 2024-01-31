@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CartService } from '../../../services/cart.service';
 import { UserService } from '../../../services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { OrderService } from '../../../services/order.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout-page',
@@ -17,7 +19,9 @@ export class CheckoutPageComponent implements OnInit{
   constructor(cartService:CartService, 
     private formBuilder: FormBuilder, 
     private userService:UserService,
-    private tostrService:ToastrService){
+    private tostrService:ToastrService,
+    private orderService:OrderService,
+    private router:Router){
       const cart = cartService.getCart();
       this.order.items = cart.items;
       this.order.totalPrice = cart.totalPrice;
@@ -40,10 +44,23 @@ export class CheckoutPageComponent implements OnInit{
       this.tostrService.warning('Please fill the inputs','Invalid Inputs');
       return;
     }
+
+    if(!this.order.addressLatLng){
+      this.tostrService.warning('Please select your location','Location');
+      return;
+    }
+
     this.order.name = this.fc.name.value;
     this.order.addres = this.fc.address.value;
 
-    console.log(this.order);
+    this.orderService.create(this.order).subscribe({
+      next:()=>{
+        this.router.navigateByUrl('/payment');
+      },
+      error:(errorResponse) =>  {
+        this.tostrService.error(errorResponse.error,'Cart');
+      }
+    })
   }
 
 }
