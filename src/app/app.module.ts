@@ -71,7 +71,7 @@ import { OrderTrackPageComponent } from './components/pages/order-track-page/ord
     })
   ],
   providers: [
-    provideClientHydration(),
+    // provideClientHydration(),
     {provide:HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true},
     {provide:HTTP_INTERCEPTORS, useClass:LoadingInterceptor, multi:true}
   ],

@@ -1,32 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { Order } from '../../../shared/models/Order';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Order } from '../../../shared/models/Order';
 import { CartService } from '../../../services/cart.service';
 import { UserService } from '../../../services/user.service';
-import { ToastrService } from 'ngx-toastr';
 import { OrderService } from '../../../services/order.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout-page',
   templateUrl: './checkout-page.component.html',
-  styleUrl: './checkout-page.component.css'
+  styleUrls: ['./checkout-page.component.css']
 })
-
-export class CheckoutPageComponent implements OnInit{
+export class CheckoutPageComponent implements OnInit {
   order:Order = new Order();
   checkoutForm!: FormGroup;
-
-  constructor(cartService:CartService, 
-    private formBuilder: FormBuilder, 
-    private userService:UserService,
-    private tostrService:ToastrService,
-    private orderService:OrderService,
-    private router:Router){
-      const cart = cartService.getCart();
-      this.order.items = cart.items;
-      this.order.totalPrice = cart.totalPrice;
-    }
+  constructor(cartService:CartService,
+              private formBuilder: FormBuilder,
+              private userService: UserService,
+              private toastrService: ToastrService,
+              private orderService: OrderService,
+              private router: Router) {
+                const cart = cartService.getCart();
+                this.order.items = cart.items;
+                this.order.totalPrice = cart.totalPrice;
+              }
 
   ngOnInit(): void {
     let {name, address} = this.userService.currentUser;
@@ -40,14 +38,14 @@ export class CheckoutPageComponent implements OnInit{
     return this.checkoutForm.controls;
   }
 
-  createOder(){
+  createOrder(){
     if(this.checkoutForm.invalid){
-      this.tostrService.warning('Please fill the inputs','Invalid Inputs');
+      this.toastrService.warning('Please fill the inputs', 'Invalid Inputs');
       return;
     }
 
     if(!this.order.addressLatLng){
-      this.tostrService.warning('Please select your location','Location');
+      this.toastrService.warning('Please select your location on the map', 'Location');
       return;
     }
 
@@ -55,13 +53,12 @@ export class CheckoutPageComponent implements OnInit{
     this.order.addres = this.fc.address.value;
 
     this.orderService.create(this.order).subscribe({
-      next:()=>{
+      next:() => {
         this.router.navigateByUrl('/payment');
       },
-      error:(errorResponse) =>  {
-        this.tostrService.error(errorResponse.error,'Cart');
+      error:(errorResponse) => {
+        this.toastrService.error(errorResponse.error, 'Cart');
       }
     })
   }
-
 }
