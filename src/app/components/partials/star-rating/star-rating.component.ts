@@ -7,10 +7,10 @@ import { Component, Input } from '@angular/core';
 })
 export class StarRatingComponent {
   @Input()
-  stars!:number;
+  stars!: number;
 
   @Input()
-  size:number = 1;
+  size: number = 1;
 
   get styles(){
     return{
@@ -20,10 +20,14 @@ export class StarRatingComponent {
     }
   }
 
-  getStarImage(current:number):string{
+  getStarImage(current: number): string{
     const preHalf = current - 0.5;
     const imgname = 
-    this.stars >= current ? 'star-full' :this.stars >= preHalf ? 'star-half' :'star-empty';
+    this.stars >= current 
+    ? 'star-full' 
+    :this.stars >= preHalf 
+    ? 'star-half' 
+    :'star-empty';
     return `/assets/stars/${imgname}.svg`;
   }
 

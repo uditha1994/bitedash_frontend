@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './checkout-page.component.html',
   styleUrl: './checkout-page.component.css'
 })
+
 export class CheckoutPageComponent implements OnInit{
   order:Order = new Order();
   checkoutForm!: FormGroup;
