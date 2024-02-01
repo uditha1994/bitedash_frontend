@@ -1,7 +1,8 @@
 <header>
     <div class="container">
-        <a routerLink="/" class="logo">BiteDash</a>
-        <nav>
+        <!-- <a routerLink="/" class="logo"><img src="/src/assets/logo.png" alt=""></a> -->
+        <img class="logo" routerLink="/" src="/assets/logo.png" alt="">
+        < <nav>
             <ul>
                 <li *ngIf="!isAuth">
                     <a routerLink="/login">Login</a>
@@ -18,6 +19,6 @@
                     <a routerLink="/cart-page">Cart <span>{{cartQuantity}}</span></a>
                 </li>
             </ul>
-        </nav>
+            </nav>
     </div>
 </header>

@@ -2,15 +2,15 @@ header {
   position: relative;
   background: white;
   padding: 0;
-  border-bottom: 1px solid #e72929;
+  border-bottom: 2px solid #8e44ad;
 }
 
 a {
-  color: #af1313;
+  color: #8e44ad;
 }
 
 a:hover {
-  background: #e72929;
+  background: #9b59b6;
   color: white;
   cursor: pointer;
 }
@@ -21,9 +21,15 @@ a:hover {
   justify-content: space-between;
 }
 
-a.logo {
-  font-weight: bold;
-  padding: 1rem;
+.logo {
+  margin-top: 0.5rem;
+  margin-left: 0.8rem;
+  width: 12rem;
+  height: 3rem;
+}
+
+.logo:hover {
+  cursor: pointer;
 }
 
 ul {
@@ -33,12 +39,12 @@ ul {
 }
 
 ul a {
-  padding: 1rem;
+  padding: 1.5rem;
   display: inline-block;
 }
 
 a span {
-  background: #ff4d4d;
+  background: #8e44ad;
   color: white;
   padding: 0.1rem 0.45rem;
   border-radius: 100rem;
