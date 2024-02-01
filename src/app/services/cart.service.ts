@@ -7,13 +7,11 @@ import { CartItem } from '../shared/models/CartItem';
 @Injectable({
   providedIn: 'root'
 })
-export class CartService implements OnInit{
+export class CartService{
   private cart:Cart = this.getCartFromLocalStorage();
   private cartSubject:BehaviorSubject<Cart> = new BehaviorSubject(this.cart);
 
   constructor() { }
-  ngOnInit(): void {
-  }
 
   addToCart(food:Food):void{
     let cartItem = this.cart.items.find(item => item.food.id === food.id);
@@ -24,7 +22,7 @@ export class CartService implements OnInit{
     this.setCartToLocalStorage();
   }
 
-  removeFromCart(foodId: string):void{
+  removeFromCart(foodId: string):void { 
     this.cart.items = this.cart.items.filter(item => item.food.id != foodId);
     this.setCartToLocalStorage();
   }

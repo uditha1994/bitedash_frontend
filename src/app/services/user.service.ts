@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { User } from '../shared/models/User';
 import { IUserLogin } from '../shared/interfaces/IUserLogin';
@@ -13,6 +13,7 @@ const USER_KEY = 'User';
   providedIn: 'root'
 })
 export class UserService{
+  
   private userSubject = new BehaviorSubject<User>(this.getUserFromLocalStorage());
   public userObservable:Observable<User>;
   
