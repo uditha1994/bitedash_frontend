@@ -3,6 +3,12 @@
         <img class="logo" routerLink="/" src="/assets/logo.png" alt="">
         <nav>
             <ul>
+                <li>
+                    <a routerLink="">About Us</a>
+                </li>
+                <li>
+                    <a routerLink="">Contact Us</a>
+                </li>
                 <li *ngIf="!isAuth">
                     <a routerLink="/login">Login</a>
                 </li>
