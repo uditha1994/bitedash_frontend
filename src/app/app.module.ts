@@ -32,6 +32,8 @@ import { PaymentPageComponent } from './components/pages/payment-page/payment-pa
 import { PayoptionButtonComponent } from './components/partials/payoption-button/payoption-button.component';
 import { OrderTrackPageComponent } from './components/pages/order-track-page/order-track-page.component';
 import { FooterComponent } from './components/partials/footer/footer.component';
+import { ContactPageComponent } from './components/pages/contact-page/contact-page.component';
+import { AboutPageComponent } from './components/pages/about-page/about-page.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { FooterComponent } from './components/partials/footer/footer.component';
     PaymentPageComponent,
     PayoptionButtonComponent,
     OrderTrackPageComponent,
-    FooterComponent
+    FooterComponent,
+    ContactPageComponent,
+    AboutPageComponent
   ],
   imports: [
     BrowserModule,
